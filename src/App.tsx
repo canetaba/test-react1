@@ -1,21 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios, {CancelTokenSource} from "axios";
 
-/*
-import HelloWorld from "./components/HelloWorld";
-function App() {
-  return (
-    <div className="App">
-      <HelloWorld />
-    </div>
-  );
-}
- */
-
 interface IPost {
     pulse: any;
-    outputValue: string;
-
 }
 
 
@@ -49,7 +36,7 @@ const App = () => {
 
     React.useEffect(() => {
         axios
-            .get<IPost[]>('https://beacon.nist.gov/beacon/2.0/chain/last/pulse/last', {
+            .get<IPost>('https://beacon.nist.gov/beacon/2.0/chain/last/pulse/last', {
                 cancelToken: cancelTokenSource.token,
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +44,7 @@ const App = () => {
                 timeout: 10000,
             })
             .then((response) => {
-                setPosts(response.data);
+                setPosts([response.data]);
                 setLoading(false);
             })
             .catch((ex) => {
@@ -79,9 +66,9 @@ const App = () => {
             {loading && <button onClick={handleCancelClick}>Cancel</button>}
             <ul className="posts">
                 {posts.map((post) => (
-                    <li key={post.outputValue}>
-                        <h3>{post.outputValue}</h3>
-                        <p>{post.outputValue}</p>
+                    <li key={post.pulse.outputValue}>
+                        <h3>{post.pulse.outputValue}</h3>
+                        <p>{post.pulse.outputValue}</p>
                     </li>
                 ))}
             </ul>
