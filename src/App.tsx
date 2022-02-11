@@ -13,10 +13,12 @@ function App() {
  */
 
 interface IPost {
-    pulse: string;
-    listValues: string;
-    title: string;
-    body: string;
+    pulse: Pulse[];
+
+}
+interface Pulse {
+    outputValue: String;
+
 }
 
 const defaultPosts: IPost[] = [];
@@ -80,8 +82,8 @@ const App = () => {
             <ul className="posts">
                 {posts.map((post) => (
                     <li key={post.pulse}>
-                        <h3>{post.title}</h3>
-                        <p>{post.body}</p>
+                        <h3>{post.pulse}</h3>
+                        <p>{post.pulse}</p>
                     </li>
                 ))}
             </ul>
