@@ -13,13 +13,10 @@ function App() {
  */
 
 interface IPost {
-    pulse: { {
-        listValues: string;
-        title: string;
-        body: string;
-
-    } };
-
+    pulse: string;
+    listValues: string;
+    title: string;
+    body: string;
 }
 
 const defaultPosts: IPost[] = [];
