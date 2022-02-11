@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import axios, {CancelTokenSource} from "axios";
 
 /*
@@ -13,11 +13,11 @@ function App() {
  */
 
 interface IPost {
-    pulse: string;
-    listValues: string;
-    title: string;
-    body: string;
+    pulse: any;
+    outputValue: string;
+
 }
+
 
 const defaultPosts: IPost[] = [];
 
@@ -79,9 +79,9 @@ const App = () => {
             {loading && <button onClick={handleCancelClick}>Cancel</button>}
             <ul className="posts">
                 {posts.map((post) => (
-                    <li key={post.pulse}>
-                        <h3>{post.title}</h3>
-                        <p>{post.body}</p>
+                    <li key={post.outputValue}>
+                        <h3>{post.outputValue}</h3>
+                        <p>{post.outputValue}</p>
                     </li>
                 ))}
             </ul>
@@ -89,5 +89,21 @@ const App = () => {
         </div>
     );
 };
+function Example() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        document.title = 'You clicked ${count} times';
+    });
+
+    return (
+        <div>
+            <p> You clicked {count} times</p>
+            <button onClick ={() => setCount(count + 1 )}>
+                Click me
+            </button>
+        </div>
+    );
+}
 
 export default App;
